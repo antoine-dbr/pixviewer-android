@@ -5,7 +5,7 @@ import android.support.annotation.NonNull;
 import java.util.List;
 
 import dbr.antoine.pixviewer.core.models.PicturePost;
-import io.reactivex.Observable;
+import io.reactivex.Single;
 
 /**
  * Created by antoine on 7/7/17.
@@ -13,7 +13,7 @@ import io.reactivex.Observable;
 
 public interface PictureRepository {
 
-    Observable<List<PicturePost>> searchPictures(@NonNull String search);
+    Single<List<PicturePost>> searchPictures(@NonNull String search);
 
-    Observable<PicturePost> searchPictureById(@NonNull String pictureId);
+    Single<PicturePost> searchPictureById(@NonNull String pictureId);
 }

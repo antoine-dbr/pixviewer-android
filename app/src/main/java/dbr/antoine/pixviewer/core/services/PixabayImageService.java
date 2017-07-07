@@ -1,7 +1,7 @@
 package dbr.antoine.pixviewer.core.services;
 
-import io.reactivex.Observable;
-import retrofit2.Response;
+import io.reactivex.Single;
+import okhttp3.ResponseBody;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
@@ -11,9 +11,9 @@ import retrofit2.http.Query;
 
 public interface PixabayImageService {
 
-    @GET("/")
-    Observable<Response> searchPictures(@Query("key") String apiKey, @Query("q") String query);
+    @GET("api")
+    Single<ResponseBody> searchPictures(@Query("key") String apiKey, @Query("q") String query);
 
-    @GET("/")
-    Observable<Response> searchPictureById(@Query("key") String apiKey, @Query("id") String id);
+    @GET("api")
+    Single<ResponseBody> searchPictureById(@Query("key") String apiKey, @Query("id") String id);
 }
