@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 26
@@ -23,6 +24,20 @@ android {
         targetCompatibility 1.7
         sourceCompatibility 1.8
     }
+
+    sourceSets {
+        test.java.srcDirs += 'src/test/kotlin'
+        androidTest.java.srcDirs += 'src/androidTest/kotlin'
+    }
+
+    // Ensure Kotlin will not be used in production code.
+    afterEvaluate {
+        android.sourceSets.all { sourceSet ->
+            if (!sourceSet.name.startsWith('test') || !sourceSet.name.startsWith('androidTest')) {
+                sourceSet.kotlin.setSrcDirs([])
+            }
+        }
+    }
 }
 
 dependencies {
@@ -43,4 +58,9 @@ dependencies {
     compile 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
 
     testCompile 'junit:junit:4.12'
+    testCompile "org.robolectric:robolectric:3.3.2"
+
+    testCompile 'org.jetbrains.kotlin:kotlin-stdlib:1.1.2-5'
+    testCompile 'org.jetbrains.kotlin:kotlin-test-junit:1.1.2-5'
+    testCompile 'org.amshove.kluent:kluent:1.+'
 }
