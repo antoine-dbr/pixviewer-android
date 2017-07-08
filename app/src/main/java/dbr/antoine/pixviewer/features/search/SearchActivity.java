@@ -8,6 +8,7 @@ import android.text.Editable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.yheriatovych.reductor.Store;
 
@@ -30,6 +31,7 @@ public class SearchActivity extends AppCompatActivity implements SearchView {
     @BindView(R.id.error_layout) View errorLayout;
     @BindView(R.id.search_result_layout) View resultLayout;
 
+    @BindView(R.id.search_edittext) EditText searchEditText;
     @BindView(R.id.search_button) Button searchButton;
 
     @BindView(R.id.grid_view) RecyclerView gridView;
@@ -55,6 +57,7 @@ public class SearchActivity extends AppCompatActivity implements SearchView {
     @Override
     public void onBackPressed() {
         if (searchLayout.getVisibility() == View.GONE) {
+            searchEditText.setText(""); // TODO: manage this EditText via Redux
             presenter.reset();
         }
         else {
