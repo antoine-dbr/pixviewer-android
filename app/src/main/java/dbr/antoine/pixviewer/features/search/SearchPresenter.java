@@ -28,7 +28,7 @@ public class SearchPresenter implements Presenter {
 
     private Disposable currentSubscription;
 
-    public SearchPresenter(SearchView searchView,
+    SearchPresenter(SearchView searchView,
         Store<SearchState> searchStore,
         PictureRepository pictureRepository) {
         this.searchView = searchView;
@@ -78,8 +78,7 @@ public class SearchPresenter implements Presenter {
         }
     }
 
-    @Override
-    public void reset() {
+    void reset() {
         searchStore.dispatch(ACTIONS.reset());
     }
 
@@ -91,11 +90,11 @@ public class SearchPresenter implements Presenter {
         }
     }
 
-    public void searching(@NonNull String query) {
+    void searching(@NonNull String query) {
         searchStore.dispatch(ACTIONS.search(query));
     }
 
-    public void search() {
+    void search() {
         searchStore.dispatch(ACTIONS.loading());
         currentSubscription = pictureRepository.searchPictures(searchStore.getState().query())
             .subscribeOn(Schedulers.io())

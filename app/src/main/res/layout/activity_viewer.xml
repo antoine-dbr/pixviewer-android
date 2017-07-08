@@ -3,9 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include layout="@layout/layout_search" />
+    <include layout="@layout/layout_viewer" />
     <include layout="@layout/layout_loading" />
     <include layout="@layout/layout_error" />
-    <include layout="@layout/layout_search_result" />
 
 </RelativeLayout>

@@ -9,6 +9,4 @@ public interface Presenter {
     void register();
 
     void unregister();
-
-    void reset();
 }

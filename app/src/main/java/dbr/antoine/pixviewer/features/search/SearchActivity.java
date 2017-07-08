@@ -5,7 +5,6 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,11 +19,10 @@ import butterknife.OnTextChanged;
 import dbr.antoine.pixviewer.R;
 import dbr.antoine.pixviewer.core.models.PicturePost;
 import dbr.antoine.pixviewer.features.common.ActivityBase;
+import dbr.antoine.pixviewer.features.viewer.ViewerActivity;
 import dbr.antoine.pixviewer.modules.ApplicationComponent;
 
 public class SearchActivity extends ActivityBase implements SearchView {
-
-    private static final String TAG = "SearchActivity";
 
     @BindView(R.id.search_layout) View searchLayout;
     @BindView(R.id.loading_layout) View loadingLayout;
@@ -113,12 +111,10 @@ public class SearchActivity extends ActivityBase implements SearchView {
     }
 
     private void renderGrid(List<PicturePost> result) {
-        final SearchPictureAdapter adapter = new SearchPictureAdapter(this, result, pictureId -> {
-            Log.d(TAG, "pictureId=" + pictureId);
-        });
+        final SearchPictureAdapter.Listener listener = pictureId -> startActivity(ViewerActivity.create(this, pictureId));
 
         gridView.setLayoutManager(new GridLayoutManager(this, 3));
-        gridView.setAdapter(adapter);
+        gridView.setAdapter(new SearchPictureAdapter(this, result, listener));
     }
 
     @Override

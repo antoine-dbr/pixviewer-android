@@ -15,7 +15,7 @@ public class SearchModule {
 
     private SearchView view;
 
-    public SearchModule(SearchView view) {
+    SearchModule(SearchView view) {
         this.view = view;
     }
 
