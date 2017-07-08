@@ -2,7 +2,10 @@ package dbr.antoine.pixviewer.features.search;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -28,6 +31,8 @@ public class SearchActivity extends AppCompatActivity implements SearchView {
     @BindView(R.id.search_result_layout) View resultLayout;
 
     @BindView(R.id.search_button) Button searchButton;
+
+    @BindView(R.id.grid_view) RecyclerView gridView;
 
     private SearchPresenter presenter;
 
@@ -102,5 +107,16 @@ public class SearchActivity extends AppCompatActivity implements SearchView {
         loadingLayout.setVisibility(View.GONE);
         errorLayout.setVisibility(View.GONE);
         resultLayout.setVisibility(View.VISIBLE);
+
+        renderGrid(result);
+    }
+
+    private void renderGrid(List<PicturePost> result) {
+        final PictureAdapter adapter = new PictureAdapter(this, result, pictureId -> {
+            Log.d(TAG, "pictureId=" + pictureId);
+        });
+
+        gridView.setLayoutManager(new GridLayoutManager(this, 3));
+        gridView.setAdapter(adapter);
     }
 }
