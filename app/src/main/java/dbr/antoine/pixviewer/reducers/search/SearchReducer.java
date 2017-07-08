@@ -1,4 +1,4 @@
-package dbr.antoine.pixviewer.features.search;
+package dbr.antoine.pixviewer.reducers.search;
 
 import com.yheriatovych.reductor.Reducer;
 import com.yheriatovych.reductor.annotations.AutoReducer;

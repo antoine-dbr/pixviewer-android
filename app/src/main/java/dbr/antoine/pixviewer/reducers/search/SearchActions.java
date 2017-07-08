@@ -1,4 +1,4 @@
-package dbr.antoine.pixviewer.features.search;
+package dbr.antoine.pixviewer.reducers.search;
 
 import com.yheriatovych.reductor.Action;
 import com.yheriatovych.reductor.annotations.ActionCreator;
@@ -11,7 +11,7 @@ import dbr.antoine.pixviewer.core.models.PicturePost;
  * Created by antoine on 7/7/17.
  */
 @ActionCreator
-interface SearchActions {
+public interface SearchActions {
 
     String RESET = "RESET";
     String SEARCH = "SEARCH";

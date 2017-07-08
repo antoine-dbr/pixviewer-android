@@ -9,8 +9,8 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import dbr.antoine.pixviewer.features.search.SearchReducer;
-import dbr.antoine.pixviewer.features.search.SearchState;
+import dbr.antoine.pixviewer.reducers.search.SearchReducer;
+import dbr.antoine.pixviewer.reducers.search.SearchState;
 
 /**
  * Created by antoine on 7/8/17.

@@ -19,7 +19,7 @@ import dbr.antoine.pixviewer.core.models.PicturePost;
  * Created by antoine on 7/8/17.
  */
 
-class PictureAdapter extends RecyclerView.Adapter<PictureAdapter.ViewHolder> {
+class SearchPictureAdapter extends RecyclerView.Adapter<SearchPictureAdapter.ViewHolder> {
 
     interface Listener {
         void onClick(String pictureId);
@@ -30,7 +30,7 @@ class PictureAdapter extends RecyclerView.Adapter<PictureAdapter.ViewHolder> {
     private final List<PicturePost> pictures;
     private final Listener listener;
 
-    PictureAdapter(@NonNull Context context, @NonNull List<PicturePost> pictures, @NonNull Listener listener) {
+    SearchPictureAdapter(@NonNull Context context, @NonNull List<PicturePost> pictures, @NonNull Listener listener) {
         this.context = context;
         this.inflater = LayoutInflater.from(context);
         this.pictures = pictures;

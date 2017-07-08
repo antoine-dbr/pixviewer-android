@@ -9,6 +9,7 @@ import dbr.antoine.pixviewer.PixViewerApplication;
 import dbr.antoine.pixviewer.modules.ApplicationComponent;
 
 /**
+ * Convenience base class to bootstrap activities using ButterKnife and Dagger2.
  * Created by antoine on 7/8/17.
  */
 

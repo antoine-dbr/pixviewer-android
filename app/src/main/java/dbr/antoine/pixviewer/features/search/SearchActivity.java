@@ -113,7 +113,7 @@ public class SearchActivity extends ActivityBase implements SearchView {
     }
 
     private void renderGrid(List<PicturePost> result) {
-        final PictureAdapter adapter = new PictureAdapter(this, result, pictureId -> {
+        final SearchPictureAdapter adapter = new SearchPictureAdapter(this, result, pictureId -> {
             Log.d(TAG, "pictureId=" + pictureId);
         });
 

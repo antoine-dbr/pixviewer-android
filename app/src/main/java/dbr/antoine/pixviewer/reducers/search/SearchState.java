@@ -1,4 +1,4 @@
-package dbr.antoine.pixviewer.features.search;
+package dbr.antoine.pixviewer.reducers.search;
 
 import android.support.annotation.Nullable;
 
@@ -15,13 +15,13 @@ import dbr.antoine.pixviewer.core.models.PicturePost;
 @AutoValue
 public abstract class SearchState {
 
-    abstract String query();
+    public abstract String query();
 
-    abstract boolean loading();
+    public abstract boolean loading();
 
-    abstract Throwable error();
+    public abstract Throwable error();
 
-    abstract List<PicturePost> result();
+    public abstract List<PicturePost> result();
 
     public static Builder builder() {
         return new AutoValue_SearchState.Builder();

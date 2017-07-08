@@ -8,6 +8,8 @@ import com.yheriatovych.reductor.Store;
 import dbr.antoine.pixviewer.core.repositories.PictureRepository;
 import dbr.antoine.pixviewer.core.utils.EmptyThrowable;
 import dbr.antoine.pixviewer.features.common.Presenter;
+import dbr.antoine.pixviewer.reducers.search.SearchActions;
+import dbr.antoine.pixviewer.reducers.search.SearchState;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
