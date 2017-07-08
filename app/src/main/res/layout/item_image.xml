@@ -8,6 +8,7 @@
         android:id="@+id/image"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:paddingBottom="16dp"
         android:scaleType="fitXY"/>
 
 </LinearLayout>
