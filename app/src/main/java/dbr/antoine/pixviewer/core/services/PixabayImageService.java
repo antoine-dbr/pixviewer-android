@@ -13,7 +13,4 @@ public interface PixabayImageService {
 
     @GET("api")
     Single<ResponseBody> searchPictures(@Query("key") String apiKey, @Query("q") String query);
-
-    @GET("api")
-    Single<ResponseBody> searchPictureById(@Query("key") String apiKey, @Query("id") String id);
 }
