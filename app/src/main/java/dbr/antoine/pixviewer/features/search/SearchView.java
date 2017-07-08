@@ -11,7 +11,7 @@ import dbr.antoine.pixviewer.features.common.ScreenView;
 
 public interface SearchView extends ScreenView<List<PicturePost>> {
 
-    void allowSearch(boolean allow);
+    void showQuery(String query);
 
     void showSearch();
 }

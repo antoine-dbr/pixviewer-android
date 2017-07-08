@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -57,7 +58,6 @@ public class SearchActivity extends AppCompatActivity implements SearchView {
     @Override
     public void onBackPressed() {
         if (searchLayout.getVisibility() == View.GONE) {
-            searchEditText.setText(""); // TODO: manage this EditText via Redux
             presenter.reset();
         }
         else {
@@ -76,8 +76,9 @@ public class SearchActivity extends AppCompatActivity implements SearchView {
     }
 
     @Override
-    public void allowSearch(boolean allow) {
-        searchButton.setClickable(allow);
+    public void showQuery(String query) {
+        searchEditText.setText(query);
+        searchButton.setClickable(!TextUtils.isEmpty(query));
     }
 
     @Override

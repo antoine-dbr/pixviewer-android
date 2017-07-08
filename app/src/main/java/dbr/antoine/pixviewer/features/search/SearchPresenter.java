@@ -1,7 +1,6 @@
 package dbr.antoine.pixviewer.features.search;
 
 import android.support.annotation.NonNull;
-import android.text.TextUtils;
 
 import com.yheriatovych.reductor.Actions;
 import com.yheriatovych.reductor.Store;
@@ -42,14 +41,18 @@ public class SearchPresenter implements Presenter {
     }
 
     private void render(SearchState state) {
+        showQuery(state);
         showSearch(state);
         showLoading(state);
         showError(state);
         showResult(state);
     }
 
+    private void showQuery(SearchState state) {
+        searchView.showQuery(state.query());
+    }
+
     private void showSearch(SearchState state) {
-        searchView.allowSearch(!TextUtils.isEmpty(state.query()));
         if (!state.loading() && EmptyThrowable.isEmpty(state.error()) && state.result().isEmpty()) {
             searchView.showSearch();
         }
