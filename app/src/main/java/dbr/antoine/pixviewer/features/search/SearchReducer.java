@@ -25,6 +25,11 @@ abstract class SearchReducer implements Reducer<SearchState> {
             .build();
     }
 
+    @AutoReducer.Action(value = SearchActions.RESET, from = SearchActions.class)
+    SearchState reset(SearchState state) {
+        return initialState();
+    }
+
     @AutoReducer.Action(value = SearchActions.SEARCH, from = SearchActions.class)
     SearchState search(SearchState state, String query) {
         return SearchState.builder()

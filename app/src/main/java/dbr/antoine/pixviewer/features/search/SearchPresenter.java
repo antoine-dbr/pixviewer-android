@@ -8,7 +8,7 @@ import com.yheriatovych.reductor.Store;
 
 import dbr.antoine.pixviewer.core.repositories.PictureRepository;
 import dbr.antoine.pixviewer.core.utils.EmptyThrowable;
-import dbr.antoine.pixviewer.features.Presenter;
+import dbr.antoine.pixviewer.features.common.Presenter;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
@@ -71,6 +71,11 @@ public class SearchPresenter implements Presenter {
         if (state.result().size() > 0) {
             searchView.showResult(state.result());
         }
+    }
+
+    @Override
+    public void reset() {
+        searchStore.dispatch(ACTIONS.reset());
     }
 
     @Override

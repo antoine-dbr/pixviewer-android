@@ -47,6 +47,16 @@ public class SearchActivity extends AppCompatActivity implements SearchView {
         super.onDestroy();
     }
 
+    @Override
+    public void onBackPressed() {
+        if (searchLayout.getVisibility() == View.GONE) {
+            presenter.reset();
+        }
+        else {
+            super.onBackPressed();
+        }
+    }
+
     @OnTextChanged(value = R.id.search_edittext, callback = OnTextChanged.Callback.AFTER_TEXT_CHANGED)
     void onSearchEdited(Editable editable) {
         presenter.searching(editable.toString());

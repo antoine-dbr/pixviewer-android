@@ -13,10 +13,14 @@ import dbr.antoine.pixviewer.core.models.PicturePost;
 @ActionCreator
 interface SearchActions {
 
+    String RESET = "RESET";
     String SEARCH = "SEARCH";
     String LOADING = "LOADING";
     String RESULT = "RESULT";
     String ERROR = "ERROR";
+
+    @ActionCreator.Action(RESET)
+    Action reset();
 
     @ActionCreator.Action(SEARCH)
     Action search(String query);
