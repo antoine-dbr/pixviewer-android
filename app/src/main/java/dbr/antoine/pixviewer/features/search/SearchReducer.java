@@ -13,7 +13,7 @@ import dbr.antoine.pixviewer.core.utils.EmptyThrowable;
  * Created by antoine on 7/7/17.
  */
 @AutoReducer
-abstract class SearchReducer implements Reducer<SearchState> {
+public abstract class SearchReducer implements Reducer<SearchState> {
 
     @AutoReducer.InitialState
     SearchState initialState() {

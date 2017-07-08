@@ -1,12 +1,13 @@
 package dbr.antoine.pixviewer;
 
 import android.app.Application;
-import android.util.Log;
+import android.content.Context;
+import android.support.annotation.NonNull;
 
-import dbr.antoine.pixviewer.core.repositories.PictureRepository;
-import dbr.antoine.pixviewer.core.repositories.PixabayPictureRepository;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
+import dbr.antoine.pixviewer.modules.ApplicationComponent;
+import dbr.antoine.pixviewer.modules.ApplicationModule;
+import dbr.antoine.pixviewer.modules.DaggerApplicationComponent;
+import dbr.antoine.pixviewer.modules.RepositoryModule;
 
 /**
  * Created by antoine on 7/7/17.
@@ -14,21 +15,23 @@ import io.reactivex.schedulers.Schedulers;
 
 public class PixViewerApplication extends Application {
 
-    private static final String TAG = "PixViewerApplication";
+    private ApplicationComponent applicationComponent;
 
     @Override
     public void onCreate() {
         super.onCreate();
+        installDagger();
+    }
 
-        PictureRepository repository = new PixabayPictureRepository();
-        repository.searchPictures("Great Wall Of China")
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(pictures -> {
-                Log.d(TAG, "result=" + pictures);
-            },
-            throwable -> {
-                Log.e(TAG, "error=", throwable);
-            });
+    private void installDagger() {
+        applicationComponent = DaggerApplicationComponent.builder()
+            .applicationModule(new ApplicationModule(this))
+            .repositoryModule(new RepositoryModule())
+            .build();
+        applicationComponent.inject(this);
+    }
+
+    public static ApplicationComponent get(@NonNull Context context) {
+        return ((PixViewerApplication) context.getApplicationContext()).applicationComponent;
     }
 }

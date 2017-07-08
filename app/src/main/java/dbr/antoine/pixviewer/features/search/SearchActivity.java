@@ -1,7 +1,6 @@
 package dbr.antoine.pixviewer.features.search;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -11,19 +10,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.yheriatovych.reductor.Store;
-
 import java.util.List;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnTextChanged;
 import dbr.antoine.pixviewer.R;
 import dbr.antoine.pixviewer.core.models.PicturePost;
-import dbr.antoine.pixviewer.core.repositories.PixabayPictureRepository;
+import dbr.antoine.pixviewer.features.common.ActivityBase;
+import dbr.antoine.pixviewer.modules.ApplicationComponent;
 
-public class SearchActivity extends AppCompatActivity implements SearchView {
+public class SearchActivity extends ActivityBase implements SearchView {
 
     private static final String TAG = "SearchActivity";
 
@@ -37,15 +36,13 @@ public class SearchActivity extends AppCompatActivity implements SearchView {
 
     @BindView(R.id.grid_view) RecyclerView gridView;
 
-    private SearchPresenter presenter;
+    @Inject SearchPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activivity_search);
-        ButterKnife.bind(this);
 
-        presenter = new SearchPresenter(this, Store.create(SearchReducer.create()), new PixabayPictureRepository());
         presenter.register();
     }
 
@@ -122,5 +119,10 @@ public class SearchActivity extends AppCompatActivity implements SearchView {
 
         gridView.setLayoutManager(new GridLayoutManager(this, 3));
         gridView.setAdapter(adapter);
+    }
+
+    @Override
+    protected void setupComponent(ApplicationComponent applicationComponent) {
+        applicationComponent.plus(new SearchModule(this)).inject(this);
     }
 }
