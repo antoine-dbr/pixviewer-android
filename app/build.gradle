@@ -12,11 +12,25 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        // API key should not be in source control!
+        buildConfigField "String", "PIXABAY_API_KEY", "\"${PIXABAY_API_KEY}\""
     }
+
+    signingConfigs {
+        demoRelease {
+            keyAlias 'demo'
+            keyPassword 'demo123'
+            storeFile file('../certs/demo.jks')
+            storePassword 'demo123'
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.demoRelease
         }
     }
 

@@ -9,6 +9,7 @@ import org.json.JSONObject;
 
 import java.util.List;
 
+import dbr.antoine.pixviewer.BuildConfig;
 import dbr.antoine.pixviewer.core.deserializers.PicturePostDeserializer;
 import dbr.antoine.pixviewer.core.models.PicturePost;
 import dbr.antoine.pixviewer.core.services.PixabayImageService;
@@ -23,8 +24,6 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
  */
 
 public class PixabayPictureRepository implements PictureRepository {
-
-    private static final String API_KEY = "5782593-a9dbfeb6120e117b7e6efd04f";
 
     private final PixabayImageService pixabay;
     private final Store<SearchState> searchStateStore;
@@ -41,7 +40,7 @@ public class PixabayPictureRepository implements PictureRepository {
 
     @Override
     public Single<List<PicturePost>> searchPictures(@NonNull String search) {
-        return pixabay.searchPictures(API_KEY, search)
+        return pixabay.searchPictures(BuildConfig.PIXABAY_API_KEY, search)
             .map(body -> body.string())
             .map(JSONObject::new)
             .map(json -> json.getJSONArray("hits"))

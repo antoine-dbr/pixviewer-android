@@ -1,7 +1,6 @@
 package dbr.antoine.pixviewer.widgets;
 
 import android.content.Context;
-import android.os.Handler;
 import android.support.v7.widget.AppCompatEditText;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -15,7 +14,6 @@ import android.util.AttributeSet;
 public class ManualEditText extends AppCompatEditText {
 
     private boolean blockCallbacks;
-    private Handler handler;
 
     public ManualEditText(Context context) {
         super(context);
@@ -34,17 +32,8 @@ public class ManualEditText extends AppCompatEditText {
         blockCallbacks = true;
         super.setText(text, type);
 
-        initHandler();
-        handler.post(() -> {
-            setSelection(getText().length());
-            blockCallbacks = false;
-        });
-    }
-
-    private void initHandler() {
-        if (handler == null) {
-            handler = new Handler();
-        }
+        setSelection(getText().length());
+        blockCallbacks = false;
     }
 
     @Override

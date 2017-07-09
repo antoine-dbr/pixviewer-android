@@ -11,6 +11,6 @@ import retrofit2.http.Query;
 
 public interface PixabayImageService {
 
-    @GET("api")
+    @GET("api?per_page=200")
     Single<ResponseBody> searchPictures(@Query("key") String apiKey, @Query("q") String query);
 }
