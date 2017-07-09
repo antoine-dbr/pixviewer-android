@@ -2,6 +2,7 @@ package dbr.antoine.pixviewer.modules;
 
 import android.app.Application;
 import android.content.Context;
+import android.view.inputmethod.InputMethodManager;
 
 import com.yheriatovych.reductor.Store;
 
@@ -40,5 +41,10 @@ public class ApplicationModule {
     @Provides @Singleton
     Store<SearchState> provideSearchStore() {
         return Store.create(SearchReducer.create());
+    }
+
+    @Provides @Singleton
+    InputMethodManager provideInputManager() {
+        return (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
     }
 }

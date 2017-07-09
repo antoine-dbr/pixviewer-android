@@ -4,14 +4,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <dbr.antoine.pixviewer.widgets.ManualEditText
+    <EditText
         android:id="@+id/search_edittext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/search_button"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:hint="@string/search_hint"/>
+        android:maxLines="1"
+        android:hint="@string/search_hint"
+        android:inputType="textAutoComplete"/>
 
     <Button
         android:id="@+id/search_button"
@@ -20,6 +22,6 @@
         android:layout_centerInParent="true"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:text="@string/search"/>
+        android:text="@string/search" />
 
 </RelativeLayout>

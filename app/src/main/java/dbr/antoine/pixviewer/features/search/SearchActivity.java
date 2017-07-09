@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -35,6 +36,7 @@ public class SearchActivity extends ActivityBase implements SearchView {
     @BindView(R.id.grid_view) RecyclerView gridView;
 
     @Inject SearchPresenter presenter;
+    @Inject InputMethodManager imm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +56,7 @@ public class SearchActivity extends ActivityBase implements SearchView {
     public void onBackPressed() {
         if (searchLayout.getVisibility() == View.GONE) {
             presenter.reset();
+            searchEditText.setText(""); // TODO: manage this EditText via Redux
         }
         else {
             super.onBackPressed();
@@ -68,11 +71,11 @@ public class SearchActivity extends ActivityBase implements SearchView {
     @OnClick(R.id.search_button)
     void onSearchClicked(View view) {
         presenter.search();
+        imm.hideSoftInputFromWindow(searchEditText.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
     @Override
     public void showQuery(String query) {
-        searchEditText.setText(query);
         searchButton.setClickable(!TextUtils.isEmpty(query));
     }
 
